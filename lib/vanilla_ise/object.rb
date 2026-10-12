@@ -48,7 +48,7 @@ module VanillaIse
       obj.to_h.transform_values do |value|
         case value
         when Array
-          value.map { |o| transform_to_hash(o) }
+          value.map { |o| o.is_a?(String) ? o : transform_to_hash(o) }
         when OpenStruct
           transform_to_hash(value)
         else
